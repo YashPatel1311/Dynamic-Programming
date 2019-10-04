@@ -1,25 +1,23 @@
-import java.math.BigInteger;
 import java.util.*;
 
 public class FiboMemo{
 
-  BigInteger count=new BigInteger("0");    
+  static  long count=0;    
     int[][] memo;
-    BigInteger counter;
+    int counter;
     int[] base;
 
     
-    void initialize(BigInteger n){
+    void initialize(int n){
         base=new int[1];
         base[0]=1;
-       memo=new int[n.intValue()][];
-       counter=new BigInteger("2");
+       memo=new int[n][];
+       counter=1;
        memo[0]=base;
         
-        if(n.intValue()>1){
-        memo[1]=base;
-
-        
+        if(n>1){
+        memo[1]=base;         
+        counter=2;
     }
 }
 
@@ -70,30 +68,18 @@ int[] result=new int[a.length+1];
 
 
 
-public  int[] fibonacci(BigInteger n)
+public  int[] fibonacci(int n)
 {
-
-    while(count.compareTo(n)==-1){
-
-        
-
-    }
-
-    
-    if(n.compareTo(counter)==-1 ||n.compareTo(counter)==0 ){
-        return memo[n.intValue()-1];
+    count++;
+    if(n <=counter ){
+        return memo[n-1];
     }
 
     else
-    {
-        
-        BigInteger temp= n.subtract(BigInteger.ONE);
-        BigInteger temp2= temp.subtract(BigInteger.ONE);
-        
-        memo[n.intValue()-1]= Add(fibonacci(temp),fibonacci(temp2));
-        counter=counter.add(BigInteger.ONE);
-        BigInteger count=counter.subtract(BigInteger.ONE);
-        return memo[count.intValue()];
+    {   
+        memo[n-1]= Add(fibonacci(n-1),fibonacci(n-2));
+        counter++;
+        return memo[counter-1];
     }
 }
 public static void main(String[]args){
@@ -101,13 +87,10 @@ public static void main(String[]args){
 Scanner sc=new Scanner(System.in);
 
 System.out.println("Enter any number  ");
-String s=sc.nextLine();
-
-BigInteger b=new BigInteger(s);
-
+int b=sc.nextInt();
 System.out.println();
 
-FiboTabu r1=new FiboTabu();
+FiboMemo r1=new FiboMemo();
 
 long start=System.nanoTime();
 r1.initialize(b);

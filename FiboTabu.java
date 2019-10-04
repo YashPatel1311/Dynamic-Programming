@@ -1,23 +1,21 @@
-import java.math.BigInteger;
 import java.util.*;
 
 public class FiboTabu{
-
-  static  long count=0;    
-    int[][] memo;
+  
+    int[][] tabu;
     int counter;
     int[] base;
-
+    int flag=0;
     
     void initialize(int n){
         base=new int[1];
         base[0]=1;
-       memo=new int[n][];
+       tabu=new int[n][];
        counter=1;
-       memo[0]=base;
+       tabu[0]=base;
         
         if(n>1){
-        memo[1]=base;         
+        tabu[1]=base;         
         counter=2;
     }
 }
@@ -71,18 +69,18 @@ int[] result=new int[a.length+1];
 
 public  int[] fibonacci(int n)
 {
-    count++;
-    if(n <=counter ){
-        return memo[n-1];
-    }
+ 
+    if(n<=2)
+    return tabu[0];
 
-    else
-    {   
-        memo[n-1]= Add(fibonacci(n-1),fibonacci(n-2));
-        counter++;
-        return memo[counter-1];
-    }
+    else{
+            for(int i=2;i<n;i++)
+            tabu[i]=Add(tabu[i-1], tabu[i-2]);
+    
+            return tabu[n-1];
+        }
 }
+
 public static void main(String[]args){
 
 Scanner sc=new Scanner(System.in);
@@ -103,6 +101,5 @@ System.out.print(b+" th fibonacci number is : ");
 for(int i=0;i<result.length;++i)
 System.out.print(result[i]);
 System.out.println("\nTime taken : "+(end-start)+" ns");
-System.out.print("No .of recursion: "+count);
 }
 }
