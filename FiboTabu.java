@@ -88,10 +88,7 @@ public static void main(String[]args){
 Scanner sc=new Scanner(System.in);
 
 System.out.println("Enter any number  ");
-String s=sc.nextLine();
-
-BigInteger b=new BigInteger(s);
-
+int b=sc.nextInt();
 System.out.println();
 
 FiboTabu r1=new FiboTabu();
