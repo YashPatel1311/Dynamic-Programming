@@ -1,17 +1,70 @@
 import java.util.*;
 
-class FiboLinear{
+class FiboLinearBottomUp{
 
-    Karatsuba r1=new Karatsuba();
+    public int[] Equal(int[]a,int[]b){
+
+        int diff=a.length-b.length;
+ 
+        int[] b2=new int[a.length];
+ 
+        for(int i=diff;i<a.length;i++)
+        b2[i]=b[i-diff];
+ 
+         
+        return b2;
+     }
+     
+
+    int[] Add(int[] a, int[]b)
+    {
+
+        if(a.length>b.length)
+        b=Equal(a,b);
+
+       if(a.length<b.length)
+        a=Equal(b,a);
+
+    int[] result=new int[a.length+1];
+
+        for(int i=result.length-1;i>=1;i--){
+            result[i]+=a[i-1]+b[i-1];
+
+            if(result[i]>=10){
+                result[i-1]+=result[i]/10;
+                result[i]=result[i]%10;
+
+            }
+        }
+
+        int temp=0;
+            while(temp<result.length && result[temp]==0  ){
+                temp++;
+            }
+                
+            if(temp!=0){
+                int[] result2=new int[result.length-temp];
+
+                for(int i=0;i<result2.length;i++)
+                result2[i]=result[i+temp];
+                
+                return result2;
+            }
+    
+            return result;
+    }
+
+
+    MultiplicationS r3=new MultiplicationS();
 
     int[][] MatrixMul(int[][] a,int[][] b){
 
         int[][] c=new int[4][];
 
-            c[0]=r1.Add(r1.Multiplication(a[0], b[0]),r1.Multiplication(a[1], b[2]));
-            c[1]=r1.Add(r1.Multiplication(a[0], b[1]),r1.Multiplication(a[1], b[3]));
-            c[2]=r1.Add(r1.Multiplication(a[2], b[0]),r1.Multiplication(a[3], b[2]));
-            c[3]=r1.Add(r1.Multiplication(a[2], b[1]),r1.Multiplication(a[3], b[3]));
+            c[0]=Add(r3.multiplication(a[0], b[0]),r3.multiplication(a[1], b[2]));
+            c[1]=Add(r3.multiplication(a[0], b[1]),r3.multiplication(a[1], b[3]));
+            c[2]=Add(r3.multiplication(a[2], b[0]),r3.multiplication(a[3], b[2]));
+            c[3]=Add(r3.multiplication(a[2], b[1]),r3.multiplication(a[3], b[3]));
        
         return c;
 
@@ -52,8 +105,8 @@ class FiboLinear{
     
             int[][] answer=new int[2][];
 
-            answer[0]=r1.Add(r1.Multiplication(result[0], temp), r1.Multiplication(result[1], temp2));
-            answer[1]=r1.Add(r1.Multiplication(result[2], temp), r1.Multiplication(result[3], temp2));
+            answer[0]=Add(r3.multiplication(result[0], temp), r3.multiplication(result[1], temp2));
+            answer[1]=Add(r3.multiplication(result[2], temp), r3.multiplication(result[3], temp2));
         
             return answer;
         }
@@ -63,7 +116,7 @@ class FiboLinear{
     public static void main(String[]args){
 
         Scanner sc=new Scanner(System.in);
-        FiboLinear r2=new FiboLinear();
+        FiboLinearBottomUp r2=new FiboLinearBottomUp();
 
             System.out.println("Enter any number");
             int n=sc.nextInt();
