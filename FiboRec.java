@@ -47,54 +47,12 @@ class FiboRec{
         }   
         return result;
     }
-
-
-    int[] Substract(int[] a, int[]b){
         
-        if(a.length>b.length){
-        b=Equal(a,b);
-        }
-
-        int sub=0;
-        int carry =0;
-
-        int[] result=new int[a.length];
-
-        for(int i=a.length-1;i>=0;i--){
-
-            sub=a[i]-b[i]-carry;
-            carry=0;
-
-            if(sub<0){
-                carry=1;
-                sub+=10;
-            }
-            result[i]=sub;
-
-        }
-        int temp=0;
-        while(temp<result.length && result[temp]==0  ){
-            temp++;
-        }
-            
-        if(temp!=0){
-            int[] result2=new int[result.length-temp];
-
-            for(int i=0;i<result2.length;i++)
-            result2[i]=result[i+temp];
-            
-            return result2;
-        }
-    
-        return result;
-    }        
-
-    
 
 
-public  int[] fibonacci(int[] n)
+public  int[] fibonacci(int n)
 {
-    if(n.length==1 && (n[0]==1 || n[0]==2))
+    if(n==1 || n==2)
     {
         int [] result= new int[1];
         result[0]=1;
@@ -102,12 +60,8 @@ public  int[] fibonacci(int[] n)
     }
 
     else
-    {
-        int [] temp= new int[1];
-        temp[0]=1;
-        int [] temp2= Substract(n,temp);
-        
-        return Add(fibonacci(temp2),fibonacci(Substract(temp2,temp)));
+    {        
+        return Add(fibonacci(n-1),fibonacci(n-2));
     }
 }
 
@@ -116,13 +70,7 @@ public static void main(String[]args){
 Scanner sc=new Scanner(System.in);
 
 System.out.println("Enter number of elements of fibonacci series to be printed: ");
-String s=sc.nextLine();
-
-int[] n=new int[s.length()];
-
-for(int i=0; i<s.length();i++)
-n[i]=Character.getNumericValue(s.charAt(i));
-
+int n=sc.nextInt();
 
 System.out.println();
 

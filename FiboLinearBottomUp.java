@@ -2,7 +2,7 @@ import java.util.*;
 
 class FiboLinearBottomUp{
 
-    public int[] Equal(int[]a,int[]b){
+    public int[] equal(int[]a,int[]b){
 
         int diff=a.length-b.length;
  
@@ -16,14 +16,14 @@ class FiboLinearBottomUp{
      }
      
 
-    int[] Add(int[] a, int[]b)
+    int[] add(int[] a, int[]b)
     {
 
         if(a.length>b.length)
-        b=Equal(a,b);
+        b=equal(a,b);
 
        if(a.length<b.length)
-        a=Equal(b,a);
+        a=equal(b,a);
 
     int[] result=new int[a.length+1];
 
@@ -57,20 +57,20 @@ class FiboLinearBottomUp{
 
     MultiplicationS r3=new MultiplicationS();
 
-    int[][] MatrixMul(int[][] a,int[][] b){
+    int[][] matrixMul(int[][] a,int[][] b){
 
         int[][] c=new int[4][];
 
-            c[0]=Add(r3.multiplication(a[0], b[0]),r3.multiplication(a[1], b[2]));
-            c[1]=Add(r3.multiplication(a[0], b[1]),r3.multiplication(a[1], b[3]));
-            c[2]=Add(r3.multiplication(a[2], b[0]),r3.multiplication(a[3], b[2]));
-            c[3]=Add(r3.multiplication(a[2], b[1]),r3.multiplication(a[3], b[3]));
+            c[0]=add(r3.multiplication(a[0], b[0]),r3.multiplication(a[1], b[2]));
+            c[1]=add(r3.multiplication(a[0], b[1]),r3.multiplication(a[1], b[3]));
+            c[2]=add(r3.multiplication(a[2], b[0]),r3.multiplication(a[3], b[2]));
+            c[3]=add(r3.multiplication(a[2], b[1]),r3.multiplication(a[3], b[3]));
        
         return c;
 
     }
 
-    int [][] Fibonacci(int n){
+    int [][] fibonacci(int n){
 
         String binary=Integer.toBinaryString(n-1);
         
@@ -87,7 +87,7 @@ class FiboLinearBottomUp{
         tabu[binary.length()-1][3]=temp2;
 
         for(int j=binary.length()-2;j>=0;j--){
-            tabu[j]=MatrixMul(tabu[j+1], tabu[j+1]);
+            tabu[j]=matrixMul(tabu[j+1], tabu[j+1]);
         }
 
         int [][] result=new int[4][];
@@ -99,14 +99,14 @@ class FiboLinearBottomUp{
 
         for(int i=0;i<binary.length();i++){
             if(binary.charAt(i)==49){
-                result=MatrixMul(result, tabu[i]);
+                result=matrixMul(result, tabu[i]);
             }
         }
     
             int[][] answer=new int[2][];
 
-            answer[0]=Add(r3.multiplication(result[0], temp), r3.multiplication(result[1], temp2));
-            answer[1]=Add(r3.multiplication(result[2], temp), r3.multiplication(result[3], temp2));
+            answer[0]=add(r3.multiplication(result[0], temp), r3.multiplication(result[1], temp2));
+            answer[1]=add(r3.multiplication(result[2], temp), r3.multiplication(result[3], temp2));
         
             return answer;
         }
@@ -120,7 +120,7 @@ class FiboLinearBottomUp{
 
             System.out.println("Enter any number");
             int n=sc.nextInt();
-            int[][] answer =r2.Fibonacci(n);
+            int[][] answer =r2.fibonacci(n);
 
             
             for(int i=0;i<answer[0].length;i++)

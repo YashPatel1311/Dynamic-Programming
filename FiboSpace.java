@@ -13,7 +13,7 @@ public class FiboSpace{
     }
 
 
-    int[] Equal(int[]a,int[]b){
+    int[] equal(int[]a,int[]b){
 
     int diff=a.length-b.length;
     int[] b2=new int[a.length];
@@ -26,9 +26,9 @@ public class FiboSpace{
 
  
 
-int[] Add(int[] a, int[]b)
+int[] add(int[] a, int[]b)
 {
-    b=Equal(a, b);        
+    b=equal(a, b);        
 
 int[] result=new int[a.length+1];
 
@@ -64,7 +64,7 @@ public  int[] fibonacci(int n)
 
     else{
         for(int i=3;i<=n;i++){
-            c=Add(b, a);
+            c=add(b, a);
             a=b;
             b=c;
         }

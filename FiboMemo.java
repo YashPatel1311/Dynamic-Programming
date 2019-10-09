@@ -21,7 +21,7 @@ public class FiboMemo{
     }
 }
 
-int[] Equal(int[]a,int[]b){
+int[] equal(int[]a,int[]b){
 
     int diff=a.length-b.length;
 
@@ -36,10 +36,10 @@ int[] Equal(int[]a,int[]b){
 
  
 
-int[] Add(int[] a, int[]b)
+int[] add(int[] a, int[]b)
 {
 
-    b=Equal(a, b);        
+    b=equal(a, b);        
 
 int[] result=new int[a.length+1];
 
@@ -77,7 +77,7 @@ public  int[] fibonacci(int n)
 
     else
     {   
-        memo[n-1]= Add(fibonacci(n-1),fibonacci(n-2));
+        memo[n-1]= add(fibonacci(n-1),fibonacci(n-2));
         counter++;
         return memo[counter-1];
     }

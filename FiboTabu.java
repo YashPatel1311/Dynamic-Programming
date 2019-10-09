@@ -20,7 +20,7 @@ public class FiboTabu{
     }
 }
 
-int[] Equal(int[]a,int[]b){
+int[] equal(int[]a,int[]b){
 
     int diff=a.length-b.length;
 
@@ -35,10 +35,10 @@ int[] Equal(int[]a,int[]b){
 
  
 
-int[] Add(int[] a, int[]b)
+int[] add(int[] a, int[]b)
 {
 
-    b=Equal(a, b);        
+    b=equal(a, b);        
 
 int[] result=new int[a.length+1];
 
@@ -75,7 +75,7 @@ public  int[] fibonacci(int n)
 
     else{
             for(int i=2;i<n;i++)
-            tabu[i]=Add(tabu[i-1], tabu[i-2]);
+            tabu[i]=add(tabu[i-1], tabu[i-2]);
     
             return tabu[n-1];
         }
